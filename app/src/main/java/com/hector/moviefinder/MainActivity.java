@@ -1,6 +1,7 @@
 package com.hector.moviefinder;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -53,8 +54,8 @@ another one for getting the Rotten Tomatoes rating for that movie
 public class MainActivity extends AppCompatActivity {
 
     // API KEYS
-    String TASTDIVE_API_KEY = "";
-    String OMDB_API_KEY = "";
+    String TASTDIVE_API_KEY = "383937-MovieFin-7XRETLZZ";
+    String OMDB_API_KEY = "f2c0d5ef";
 
     // Variable for double tap check
     boolean doubleBackToExitPressedOnce = false;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ListView listView;
     Dialog myPopup;
+    CardView cardView;
 
     // Request queue
     RequestQueue requestQueue;
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         searchButton = findViewById(R.id.searchButton);
         progressBar = findViewById(R.id.progressBar);
         listView = findViewById(R.id.resultList);
+        cardView = findViewById(R.id.cardViewList);
 
         // Instance creations
         cache = new DiskBasedCache(getCacheDir(), 1024*1024); //1MB Cache
@@ -114,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     searchBox.onEditorAction(EditorInfo.IME_ACTION_DONE);
                     searchButton.setVisibility(View.INVISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
-                    listView.setVisibility(View.INVISIBLE);
+                    cardView.setVisibility(View.INVISIBLE);
                     requestQueue.start();
 
                     // Calling the getSimilar Movies Function
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
     private void getSimilarMovies(String movie_name, String movie_count){
         // URL for tasteDive API
         String tasteDiveURL = "https://tastedive.com/api/similar?q="+movie_name+"&limit="+movie_count+"&k="+TASTDIVE_API_KEY;
+        Log.d(TAG, "TasteDive :: "+tasteDiveURL);
 
         // Creating the request
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, tasteDiveURL, null,
@@ -229,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Base url with parameters for OMDB API
         String omdbURL = "https://www.omdbapi.com/?apikey="+OMDB_API_KEY+"&t="+movieName+"&r=json";
+        Log.d(TAG, "OMDB :: "+omdbURL);
 
         // Creating the request
         JsonObjectRequest omdbRequest = new JsonObjectRequest(Request.Method.GET, omdbURL, null,
@@ -284,11 +289,12 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             // Creating array adapter for listView the related movies
-                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, relatedMovies);
+
+                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_view_coustome_layout, R.id.list_content, relatedMovies);
                             listView.setAdapter(arrayAdapter);
 
                             searchButtonShowAndProgressBarHide();
-                            listView.setVisibility(View.VISIBLE);
+                            cardView.setVisibility(View.VISIBLE);
                         }
                     }
                 },

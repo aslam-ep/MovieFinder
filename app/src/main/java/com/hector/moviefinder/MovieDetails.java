@@ -43,8 +43,17 @@ public class MovieDetails{
     public static Comparator<MovieDetails> RatingComparator = new Comparator<MovieDetails>() {
         @Override
         public int compare(MovieDetails o1, MovieDetails o2) {
-            float r1 = Float.parseFloat(o1.getImdbRating());
-            float r2 = Float.parseFloat(o2.getImdbRating());
+            float r1, r2;
+            try {
+                r1 = Float.parseFloat(o1.getImdbRating());
+            }catch (NumberFormatException e){
+                r1 = 0;
+            }
+            try {
+                r2 = Float.parseFloat(o2.getImdbRating());
+            }catch (NumberFormatException e){
+                r2 = 0;
+            }
 
             return Float.compare(r2, r1);
         }
