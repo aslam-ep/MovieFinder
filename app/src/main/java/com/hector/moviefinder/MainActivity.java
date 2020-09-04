@@ -53,8 +53,8 @@ another one for getting the Rotten Tomatoes rating for that movie
 public class MainActivity extends AppCompatActivity {
 
     // API KEYS
-    String TASTDIVE_API_KEY = "383937-MovieFin-7XRETLZZ";
-    String OMDB_API_KEY = "f2c0d5ef";
+    String TASTDIVE_API_KEY = "";
+    String OMDB_API_KEY = "";
 
     // Variable for double tap check
     boolean doubleBackToExitPressedOnce = false;
