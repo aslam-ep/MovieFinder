@@ -55,7 +55,7 @@ public class MovieDetails{
                 r2 = 0;
             }
 
-            return Float.compare(r2, r1);
+            return Float.compare(r2, r1 );
         }
     };
 

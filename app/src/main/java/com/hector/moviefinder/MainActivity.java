@@ -54,8 +54,8 @@ another one for getting the Rotten Tomatoes rating for that movie
 public class MainActivity extends AppCompatActivity {
 
     // API KEYS
-    String TASTDIVE_API_KEY = "";
-    String OMDB_API_KEY = "";
+    String TASTDIVE_API_KEY = "383937-MovieFin-7XRETLZZ";
+    String OMDB_API_KEY = "f2c0d5ef";
 
     // Variable for double tap check
     boolean doubleBackToExitPressedOnce = false;
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     // Result variable
     String [] relatedMovies;
     List<MovieDetails> movieDetails;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -277,20 +278,23 @@ public class MainActivity extends AppCompatActivity {
                         movieDetails.add(new MovieDetails(movieName, year, genre, imdbRating, plot, imgURL));
 
                         // Checking that all movies details are collected
-                        if(movieCount == totalMovieCount-1){
+                        if(movieDetails.size() == totalMovieCount){
 
+                            Log.d(TAG, "Error1 :: "+movieDetails.size());
                             // Sorting the movie based on IMDB rating
                             Collections.sort(movieDetails, MovieDetails.RatingComparator);
-
+                            Log.d(TAG, "Error2 :: "+movieDetails.size());
 
                             // String the sorted movie title to relatedMovies array for listView
+                            String[] similarMovies = new String[totalMovieCount];
+
                             for (int i=0; i < totalMovieCount; i++){
-                                relatedMovies[i] = ((movieDetails.get(i)).getTitle());
+                                similarMovies[i] = ((movieDetails.get(i)).getTitle());
                             }
 
                             // Creating array adapter for listView the related movies
 
-                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_view_coustome_layout, R.id.list_content, relatedMovies);
+                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.list_view_coustome_layout, R.id.list_content, similarMovies);
                             listView.setAdapter(arrayAdapter);
 
                             searchButtonShowAndProgressBarHide();
