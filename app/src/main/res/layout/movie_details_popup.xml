@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    app:cardCornerRadius="15dp"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/closeText"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@drawable/ic_baseline_close_24"/>
+
+        <ImageView
+            android:id="@+id/moviePoster"
+            android:layout_width="90dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/movieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorBlack"
+            android:text="Title : Thor: Ragnarok"
+            android:layout_toRightOf="@id/moviePoster"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/movieYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:text="Year : 2017"
+            android:textColor="@color/colorBlack"
+            android:layout_toRightOf="@id/moviePoster"
+            android:layout_below="@id/movieTitle"/>
+
+        <TextView
+            android:id="@+id/movieRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:text="IMDB Rating : 7.9/10"
+            android:textColor="@color/colorBlack"
+            android:layout_toRightOf="@id/moviePoster"
+            android:layout_below="@+id/movieYear"/>
+
+        <TextView
+            android:id="@+id/movieGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:text="Genre : Action, Adventure, Comedy, Fantasy, Sci-Fi"
+            android:textColor="@color/colorBlack"
+            android:layout_toRightOf="@id/moviePoster"
+            android:layout_below="@+id/movieRating"/>
+        <TextView
+            android:id="@+id/moviePlot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moviePoster"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:justificationMode="inter_word"
+            android:textColor="@color/colorBlack"
+            android:text="Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela." />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
